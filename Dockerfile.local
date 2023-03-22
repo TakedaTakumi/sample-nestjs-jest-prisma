@@ -1,0 +1,15 @@
+FROM node:18-alpine
+
+ENV VERSION 0.0.1
+RUN apk add --update-cache --no-cache\
+    git
+
+RUN mkdir /workspace
+WORKDIR /workspace
+# COPY package*.json ./
+# RUN yarn install
+# COPY . .
+# RUN yarn prisma generate
+
+EXPOSE 4000
+# CMD yarn start:dev
