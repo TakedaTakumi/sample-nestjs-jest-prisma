@@ -21,7 +21,7 @@
 		"ghcr.io/devcontainers/features/git:1": {},
 		"ghcr.io/devcontainers/features/github-cli:1": {},
 		"ghcr.io/devcontainers-contrib/features/mysql-homebrew:1": {}
-	}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -39,7 +39,48 @@
 	// "postCreateCommand": "cat /etc/os-release",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"cSpell.words": [
+					"soqura",
+					"nestjs",
+					"reconstructor",
+					"usecase"
+				],
+				"cSpell.enableFiletypes": [
+					"prisma"
+				],
+				"editor.formatOnSave": true,
+				"editor.tabSize": 2,
+				"editor.insertSpaces": true,
+				"gitlens.defaultDateStyle": "absolute",
+				"gitlens.defaultDateFormat": "YYYY-MM-DD HH:mm"
+			},
+			"extensions": [
+				"wraith13.background-phi-colors",
+				"streetsidesoftware.code-spell-checker",
+				"dbaeumer.vscode-eslint",
+				"heaths.vscode-guid",
+				"oderwat.indent-rainbow",
+				"ms-ceintl.vscode-language-pack-ja",
+				"christian-kohler.path-intellisense",
+				"esbenp.prettier-vscode",
+				"shardulm94.trailing-spaces",
+				"tyriar.lorem-ipsum",
+				"oouo-diogo-perdigao.docthis",
+				"asuka.insertnumbers",
+				"github.vscode-pull-request-github",
+				"eamodio.gitlens",
+				"prisma.prisma",
+				"wmaurer.change-case",
+				"mhutchie.git-graph",
+				"wayou.vscode-todo-highlight",
+				"IBM.output-colorizer"
+			]
+
+		}
+	},
 
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "devcontainer"
