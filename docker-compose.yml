@@ -32,28 +32,28 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-      # migrate:
-      #   condition: service_completed_successfully
+      migrate:
+        condition: service_completed_successfully
     env_file:
       - .env
     tty: true
 
-  # migrate:
-  #   platform: linux/x86_64
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.migrate
-  #     network: host
-  #   environment:
-  #     - MYSQL_HOST=mysql
-  #     - MYSQL_USER=root
-  #     - MYSQL_PORT=13306
-  #     - MYSQL_PASSWORD=
-  #     - MYSQL_DATABASE=nestjest
-  #     - DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}
-  #   depends_on:
-  #     mysql:
-  #       condition: service_healthy
+  migrate:
+    platform: linux/x86_64
+    build:
+      context: .
+      dockerfile: Dockerfile.migrate
+      network: host
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PORT=13306
+      - MYSQL_PASSWORD=
+      - MYSQL_DATABASE=nestjest
+      - DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}
+    depends_on:
+      mysql:
+        condition: service_healthy
 
 volumes:
   mysql-db:

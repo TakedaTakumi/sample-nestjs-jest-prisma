@@ -1,33 +1,12 @@
-# Use parallel build will make little bit faster
-# DOCKER_BUILDKIT=1 docker build .
-
-# ==============================================================================
-# 1. Cache node_modules
-# ==============================================================================
-FROM node:18-slim as cache
-WORKDIR /app
-# COPY package.json yarn.lock ./
-# RUN yarn install --non-interactive --frozen-lockfile
-RUN yarn global add prisma
-
-
-# ==============================================================================
-# 2. Migration
-# ==============================================================================
 FROM node:18-slim
-WORKDIR /app
+WORKDIR /workspace
 RUN apt-get update -y && apt-get install -y openssl
-COPY --from=cache /app/node_modules /app/node_modules
-
-# package.json is needed to run any yarn commands
-# COPY package.json ./
+# COPY --from=cache /workspace/node_modules /workspace/node_modules
+RUN yarn global add prisma
 
 # Copy prisma directory and run prisma generate
 COPY prisma/ ./prisma/
 RUN prisma generate
 
-# Copy script for migration and run
-# COPY ./tools/runMigration.sh ./
-# RUN chmod 744 ./runMigration.sh
-# CMD ./runMigration.sh
-CMD prisma migrate deploy && prisma db seed
+# CMD prisma migrate deploy && prisma db seed
+CMD prisma migrate deploy
